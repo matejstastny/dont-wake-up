@@ -246,9 +246,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 5
-  jumpForce: 7
-  groundCheckDistance: 1.1
+  cameraTransform: {fileID: 963194228}
 --- !u!54 &454267664
 Rigidbody:
   m_ObjectHideFlags: 0
