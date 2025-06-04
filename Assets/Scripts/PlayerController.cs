@@ -8,19 +8,18 @@ public class PlayerController : MonoBehaviour
     private const float MoveSpeed = 5f;
     private const float JumpForce = 7f;
     private const float GroundCheckDistance = 1.1f;
-    private const float MouseSensitivity = 100f;
+    private const float MouseSensitivity = 300f;
 
     public Transform cameraTransform;
 
     private Rigidbody _rb;
     private bool _isGrounded;
 
-    private float _xRotation = 0f;
+    private float _xRotation;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
