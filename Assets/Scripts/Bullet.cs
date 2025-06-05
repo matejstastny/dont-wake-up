@@ -22,11 +22,12 @@ public class Bullet : MonoBehaviour
     {
         if (!(Vector3.Distance(_startPosition, transform.position) >= MaxDistance)) return;
         Destroy(gameObject);
-        Debug.Log("destroyed" + name);
+        Global.Log("destroyed" + name);
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        Global.Log("Hit " + collision.gameObject.name);
         Destroy(gameObject);
     }
 }

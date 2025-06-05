@@ -3,21 +3,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    public Transform cameraTransform;
     public GameObject bulletPrefab;
-
     public LayerMask groundMask;
 
     private const float MoveSpeed = 5f;
     private const float JumpForce = 7f;
     private const float GroundCheckDistance = 1.1f;
     private const float MouseSensitivity = 600f;
-    private const float ShootDistance = 100f;
 
-    public Transform cameraTransform;
 
     private Rigidbody _rb;
     private bool _isGrounded;
-
     private float _xRotation;
 
     // Start -------------------------------------------------------------------------------------
@@ -69,15 +66,6 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        Ray ray = cameraTransform.GetComponent<Camera>()
-            .ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
-
-        if (Physics.Raycast(ray, out RaycastHit hit, ShootDistance))
-        {
-            Debug.Log("[" + System.DateTime.Now + "] Hit " + hit.collider.name);
-            // TODO add hit effect here
-        }
-
         Instantiate(
             bulletPrefab,
             cameraTransform.position + cameraTransform.forward * 1.5f,
