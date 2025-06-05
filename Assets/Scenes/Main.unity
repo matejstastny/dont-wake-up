@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 426346256}
   - component: {fileID: 426346255}
   - component: {fileID: 426346254}
+  - component: {fileID: 426346257}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
@@ -430,6 +431,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &426346257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426346253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: ea3076a785ab94706ad5818a8d18e5e8, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &454267658
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +479,7 @@ GameObject:
   - component: {fileID: 454267664}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1111,7 +1144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3699071295990354628, guid: 68b679078f7ba46a683008ace2293899, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.86
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 3699071295990354628, guid: 68b679078f7ba46a683008ace2293899, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1149,7 +1182,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1603331162477831577, guid: 68b679078f7ba46a683008ace2293899, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
