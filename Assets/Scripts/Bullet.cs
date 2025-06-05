@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
     private const float Speed = 20f;
@@ -7,25 +8,20 @@ public class Bullet : MonoBehaviour
 
     private Vector3 _startPosition;
 
-    void Start()
+    private void Start()
     {
         _startPosition = transform.position;
-        Rigidbody rb = GetComponent<Rigidbody>();
-
-        if (rb)
-        {
-            rb.velocity = transform.up * Speed;
-        }
+        GetComponent<Rigidbody>().velocity = transform.up * Speed;
     }
 
-    void Update()
+    private void Update()
     {
         if (!(Vector3.Distance(_startPosition, transform.position) >= MaxDistance)) return;
         Destroy(gameObject);
         Global.Log("destroyed" + name);
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         Global.Log("Hit " + collision.gameObject.name);
         Destroy(gameObject);
