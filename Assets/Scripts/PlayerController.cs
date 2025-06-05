@@ -3,12 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    public GameObject bulletPrefab;
+
     public LayerMask groundMask;
 
     private const float MoveSpeed = 5f;
     private const float JumpForce = 7f;
     private const float GroundCheckDistance = 1.1f;
     private const float MouseSensitivity = 600f;
+    private const float ShootDistance = 100f;
 
     public Transform cameraTransform;
 
@@ -17,10 +20,14 @@ public class PlayerController : MonoBehaviour
 
     private float _xRotation;
 
+    // Start -------------------------------------------------------------------------------------
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
     }
+
+    // Updates -----------------------------------------------------------------------------------
 
     private void Update()
     {
@@ -41,6 +48,11 @@ public class PlayerController : MonoBehaviour
         {
             _rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
     }
 
     private void FixedUpdate()
@@ -51,5 +63,25 @@ public class PlayerController : MonoBehaviour
         Vector3 move = (transform.right * moveX + transform.forward * moveZ) * MoveSpeed;
         Vector3 newVelocity = new Vector3(move.x, _rb.velocity.y, move.z);
         _rb.velocity = newVelocity;
+    }
+
+    // Actions -----------------------------------------------------------------------------------
+
+    private void Shoot()
+    {
+        Ray ray = cameraTransform.GetComponent<Camera>()
+            .ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, ShootDistance))
+        {
+            Debug.Log("[" + System.DateTime.Now + "] Hit " + hit.collider.name);
+            // TODO add hit effect here
+        }
+
+        Instantiate(
+            bulletPrefab,
+            cameraTransform.position + cameraTransform.forward * 1.5f,
+            cameraTransform.rotation * Quaternion.Euler(90f, 0f, 0f)
+        );
     }
 }
