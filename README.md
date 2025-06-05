@@ -1,6 +1,7 @@
-# Project Hollow
+# No Light Left
 
-This is a First person shooter game made in Unity for my RHS Video game Design class lab.
+
+This is a first-person shooter game made in Unity for my RHS Video game Design class lab.
 
 ## Resources
 
