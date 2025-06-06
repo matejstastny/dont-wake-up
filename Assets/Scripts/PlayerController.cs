@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     public LayerMask groundMask;
 
-    private const float MoveSpeed = 5f;
-    private const float JumpForce = 7f;
+    private const float MoveSpeed = 10f;
+    private const float JumpForce = 6f;
     private const float GroundCheckDistance = 1.1f;
     private const float MouseSensitivity = 600f;
 

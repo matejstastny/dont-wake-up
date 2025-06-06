@@ -5,8 +5,8 @@ public class Bullet : MonoBehaviour
 {
     public ParticleSystem explosionParticle;
     
-    private const float Speed = 20f;
-    private const float MaxDistance = 20f;
+    private const float Speed = 50f;
+    private const float MaxDistance = 25f;
 
     private Vector3 _startPosition;
 
