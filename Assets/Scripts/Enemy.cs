@@ -8,7 +8,7 @@ public class EnemyFollow : MonoBehaviour
     
     private Transform _player;
     private NavMeshAgent _agent;
-    private int _hp = 100;
+    private int _hp = 60;
 
     private void Start()
     {
