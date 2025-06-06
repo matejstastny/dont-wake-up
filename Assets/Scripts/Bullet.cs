@@ -23,6 +23,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().Play(0);
+        }
         Global.Log("Hit " + collision.gameObject.name);
         Destroy(gameObject);
     }
