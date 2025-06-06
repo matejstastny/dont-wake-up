@@ -1,17 +1,20 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyFollow : MonoBehaviour
 {
+    public ParticleSystem spawnParticle;
+    public ParticleSystem deathParticle;
+    
     private Transform _player;
     private NavMeshAgent _agent;
-    private int hp = 100;
+    private int _hp = 100;
 
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _agent = GetComponent<NavMeshAgent>();
+        spawnParticle.Play();
     }
 
     private void Update()
@@ -32,9 +35,10 @@ public class EnemyFollow : MonoBehaviour
     {
         Debug.Log(other.gameObject.name);
         if (!other.gameObject.CompareTag("Bullet")) return;
-        hp -= 10;
-        if (hp <= 0)
+        _hp -= 10;
+        if (_hp <= 0)
         {
+            Instantiate(deathParticle, transform.position, deathParticle.transform.rotation);
             Destroy(gameObject);
         }
     }
