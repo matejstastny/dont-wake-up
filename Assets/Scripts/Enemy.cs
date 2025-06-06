@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,6 +6,7 @@ public class EnemyFollow : MonoBehaviour
 {
     private Transform _player;
     private NavMeshAgent _agent;
+    private int hp = 100;
 
     private void Start()
     {
@@ -23,6 +25,17 @@ public class EnemyFollow : MonoBehaviour
         else
         {
             _agent.ResetPath();
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (!other.gameObject.CompareTag("Bullet")) return;
+        hp -= 10;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
