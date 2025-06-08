@@ -1,3 +1,4 @@
+<img src="https://github.com/matysta/dont-wake-up/blob/main/Assets/Textures/icon.png?raw=true" align="left" width="20%"  alt="Project Icon"/>
 # 💤 **Don't Wake Up**
 
 > Made with **Unity 2023.2.12f1**  
