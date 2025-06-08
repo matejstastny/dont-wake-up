@@ -1,19 +1,35 @@
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI waveText;
     public GameObject enemyPrefab;
+    public GameObject pauseScreen;
+    public GameObject crosshair;
 
     private int _waveNumber;
-    
-    void Update()
+    private bool _isPaused;
+
+    private void Update()
     {
         if (GameObject.FindGameObjectsWithTag($"Enemy").Length <= 0)
         {
             SpawnWave();
         }
+    }
+
+    public void TogglePause()
+    {
+        _isPaused = !_isPaused;
+        pauseScreen.SetActive(_isPaused);
+        crosshair.SetActive(!_isPaused);
+    }
+
+    public bool IsPaused()
+    {
+        return _isPaused;
     }
 
     private void SpawnWave()

@@ -5,7 +5,8 @@ public class EnemyFollow : MonoBehaviour
 {
     public ParticleSystem spawnParticle;
     public ParticleSystem deathParticle;
-    
+
+    private GameManager _gameManager;
     private Transform _player;
     private NavMeshAgent _agent;
     private int _hp = 60;
@@ -13,6 +14,7 @@ public class EnemyFollow : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         _agent = GetComponent<NavMeshAgent>();
         spawnParticle.Play();
     }
@@ -21,7 +23,7 @@ public class EnemyFollow : MonoBehaviour
     {
         if (!_player) return;
         float distance = Vector3.Distance(transform.position, _player.position);
-        if (distance > 1.5f)
+        if (distance > 2f && !_gameManager.IsPaused())
         {
             _agent.SetDestination(_player.position);
         }
