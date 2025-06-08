@@ -1,24 +1,39 @@
-using TMPro;
+/*
+ * Author: Matěj Šťastný
+ * Date created: 6/3/2025
+ * GitHub link: https://github.com/matysta/dont-wake-up
+ */
+
 using UnityEngine;
-using Random = UnityEngine.Random;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("References")]
     public TextMeshProUGUI waveText;
     public GameObject enemyPrefab;
     public GameObject pauseScreen;
     public GameObject crosshair;
 
-    private int _waveNumber;
-    private bool _isPaused;
+    [Header("State")]
+    private int _waveNumber = 0;
+    private bool _isPaused = false;
+    
+    // Update -------------------------------------------------------------------------------------------
 
     private void Update()
     {
-        if (GameObject.FindGameObjectsWithTag($"Enemy").Length <= 0)
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
         {
             SpawnWave();
         }
     }
+    
+    // Accessors -----------------------------------------------------------------------------------------
+
+    public bool IsPaused() => _isPaused;
+    
+    // Events -------------------------------------------------------------------------------------------
 
     public void TogglePause()
     {
@@ -27,15 +42,11 @@ public class GameManager : MonoBehaviour
         crosshair.SetActive(!_isPaused);
     }
 
-    public bool IsPaused()
-    {
-        return _isPaused;
-    }
-
     private void SpawnWave()
     {
         _waveNumber++;
-        waveText.text = "Wave: " + _waveNumber;
+        waveText.text = $"Wave: {_waveNumber}";
+
         for (int i = 0; i < _waveNumber; i++)
         {
             Instantiate(enemyPrefab, GetRandomPosition(), enemyPrefab.transform.rotation);
@@ -44,8 +55,8 @@ public class GameManager : MonoBehaviour
 
     private Vector3 GetRandomPosition()
     {
-        float randomX = Random.Range(385f, 463f);
-        float randomZ = Random.Range(446f, 522f);
-        return new Vector3(randomX, 1.46f, randomZ);
+        float x = Random.Range(385f, 463f);
+        float z = Random.Range(446f, 522f);
+        return new Vector3(x, 1.46f, z);
     }
 }

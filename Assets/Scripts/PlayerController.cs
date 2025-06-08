@@ -1,4 +1,9 @@
-using System;
+/*
+ * Author: Matěj Šťastný
+ * Date created: 6/3/2025
+ * GitHub link: https://github.com/matysta/dont-wake-up
+ */
+
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]

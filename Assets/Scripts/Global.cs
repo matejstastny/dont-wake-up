@@ -1,7 +1,13 @@
+/*
+ * Author: Matěj Šťastný
+ * Date created: 6/5/2025
+ * GitHub link: https://github.com/matysta/dont-wake-up
+ */
+
 using System;
 using UnityEngine;
 
-public class Global
+public static class Global
 {
     public static void Log(string message)
     {

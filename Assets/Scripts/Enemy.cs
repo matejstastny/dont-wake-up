@@ -1,35 +1,58 @@
+/*
+ * Author: Matěj Šťastný
+ * Date created: 6/5/2025
+ * GitHub link: https://github.com/matysta/dont-wake-up
+ */
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyFollow : MonoBehaviour
 {
+    [Header("References")]
     public ParticleSystem spawnParticle;
     public ParticleSystem deathParticle;
 
+    [Header("Private")]
     private GameManager _gameManager;
-    private bool _canHitPlayer = true;
     private NavMeshAgent _agent;
     private Transform _player;
+    private AudioSource _audioSource;
+
+    [Header("State")]
+    private bool _canHitPlayer = true;
     private int _hp = 60;
+    
+    // Start --------------------------------------------------------------------------------------------
 
     private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        _agent = GetComponent<NavMeshAgent>();
-        spawnParticle.Play();
-    }
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj) _player = playerObj.transform;
 
+        GameObject gameManagerObj = GameObject.FindGameObjectWithTag("GameManager");
+        if (gameManagerObj) _gameManager = gameManagerObj.GetComponent<GameManager>();
+
+        _agent = GetComponent<NavMeshAgent>();
+        _audioSource = GetComponent<AudioSource>();
+
+        spawnParticle?.Play();
+    }
+    
+    // Update -------------------------------------------------------------------------------------------
+    
     private void Update()
     {
-        if (!_player) return;
+        if (!_player || !_gameManager) return;
+
         float distance = Vector3.Distance(transform.position, _player.position);
+
         if (distance < 2.3f && _canHitPlayer)
         {
-                StartCoroutine(nameof(HitPlayer));
+            StartCoroutine(HitPlayer());
         }
+
         if (distance > 2f && !_gameManager.IsPaused())
         {
             _agent.SetDestination(_player.position);
@@ -39,26 +62,36 @@ public class EnemyFollow : MonoBehaviour
             _agent.ResetPath();
         }
     }
+    
+    // Collision ----------------------------------------------------------------------------------------
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            _hp -= 10;
-            if (_hp > 0) return;
+        if (!other.gameObject.CompareTag("Bullet")) return;
 
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, player.transform.position);
-            Instantiate(deathParticle, transform.position, deathParticle.transform.rotation);
-            Destroy(gameObject);
+        _hp -= 10;
+        if (_hp > 0) return;
+
+        if (_audioSource && _player)
+        {
+            AudioSource.PlayClipAtPoint(_audioSource.clip, _player.position);
         }
+
+        if (deathParticle)
+        {
+            Instantiate(deathParticle, transform.position, deathParticle.transform.rotation);
+        }
+
+        Destroy(gameObject);
     }
+    
+    // Events -------------------------------------------------------------------------------------------
 
     private IEnumerator HitPlayer()
     {
         _canHitPlayer = false;
-        // TODO Hit player
-        yield return new WaitForSeconds(1);
+        // TODO: Hit player logic
+        yield return new WaitForSeconds(1f);
         _canHitPlayer = true;
     }
 }
