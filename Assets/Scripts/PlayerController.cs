@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if (_gameManager.IsPaused()) return;
         HandleMovement();
     }
-
+    
     // Events -------------------------------------------------------------------------------------------
 
     private void HandlePauseToggle()
