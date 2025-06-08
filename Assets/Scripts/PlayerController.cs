@@ -5,16 +5,17 @@ public class PlayerController : MonoBehaviour
 {
     public Transform cameraTransform;
     public GameObject bulletPrefab;
+    public GameObject flashlight;
     public LayerMask groundMask;
 
     private const float MoveSpeed = 10f;
     private const float JumpForce = 6f;
     private const float GroundCheckDistance = 1.1f;
     private const float MouseSensitivity = 600f;
-
-
+    
     private Rigidbody _rb;
     private bool _isGrounded;
+    private bool _flashlightOn;
     private float _xRotation;
 
     // Start -------------------------------------------------------------------------------------
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _flashlightOn = true;
     }
 
     // Updates -----------------------------------------------------------------------------------
@@ -45,10 +47,15 @@ public class PlayerController : MonoBehaviour
         {
             _rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
         }
-
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(1))
+        {
+            _flashlightOn =  !_flashlightOn;
+            flashlight.SetActive(_flashlightOn);
         }
     }
 
