@@ -27,7 +27,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().Play(0);
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            AudioSource.PlayClipAtPoint(player.GetComponent<AudioSource>().clip, player.transform.position);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         }
         Global.Log("Hit " + collision.gameObject.name);

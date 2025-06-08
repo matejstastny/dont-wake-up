@@ -33,13 +33,12 @@ public class EnemyFollow : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.name);
         if (!other.gameObject.CompareTag("Bullet")) return;
         _hp -= 10;
-        if (_hp <= 0)
-        {
-            Instantiate(deathParticle, transform.position, deathParticle.transform.rotation);
-            Destroy(gameObject);
-        }
+        if (_hp > 0) return;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        AudioSource.PlayClipAtPoint(GetComponent<AudioSource>().clip, player.transform.position);
+        Instantiate(deathParticle, transform.position, deathParticle.transform.rotation);
+        Destroy(gameObject);
     }
 }
