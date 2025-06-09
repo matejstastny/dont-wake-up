@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI waveText;
     public GameObject enemyPrefab;
     public GameObject pauseScreen;
+    public GameObject hurtEffect;
     public GameObject crosshair;
 
     [Header("State")]
@@ -35,6 +36,11 @@ public class GameManager : MonoBehaviour
     
     // Events -------------------------------------------------------------------------------------------
 
+    public void TakeDamage()
+    {
+        hurtEffect.GetComponent<PostProcessingController>().TakeDamage();
+    }
+    
     public void TogglePause()
     {
         _isPaused = !_isPaused;

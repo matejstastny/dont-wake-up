@@ -48,12 +48,12 @@ public class EnemyFollow : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, _player.position);
 
-        if (distance < 2.3f && _canHitPlayer)
+        if (distance < 1.5f && _canHitPlayer)
         {
             StartCoroutine(HitPlayer());
         }
 
-        if (distance > 2f && !_gameManager.IsPaused())
+        if (distance > 1.3f && !_gameManager.IsPaused())
         {
             _agent.SetDestination(_player.position);
         }
@@ -90,7 +90,7 @@ public class EnemyFollow : MonoBehaviour
     private IEnumerator HitPlayer()
     {
         _canHitPlayer = false;
-        // TODO: Hit player logic
+        _gameManager.TakeDamage();
         yield return new WaitForSeconds(1f);
         _canHitPlayer = true;
     }

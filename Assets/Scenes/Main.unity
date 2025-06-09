@@ -828,7 +828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ce8ffc6ad443ae8b07b5156d65adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 0
 --- !u!1 &955815066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1265,7 @@ MonoBehaviour:
   waveText: {fileID: 1687733010}
   enemyPrefab: {fileID: 2945798113830944975, guid: 68b679078f7ba46a683008ace2293899, type: 3}
   pauseScreen: {fileID: 955815066}
+  hurtEffect: {fileID: 773837697}
   crosshair: {fileID: 1248477971}
 --- !u!4 &1121661109
 Transform:
