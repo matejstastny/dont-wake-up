@@ -97,9 +97,18 @@ public class GameManager : MonoBehaviour
 
     private Vector3 GetRandomPosition()
     {
-        float x = Random.Range(385f, 463f);
-        float z = Random.Range(446f, 522f);
-        return new Vector3(x, 1.46f, z);
+        float minDistance = 1.5f;
+        Vector3 playerPos = _player.transform.position;
+        Vector3 randomPos;
+
+        do
+        {
+            float x = Random.Range(385f, 463f);
+            float z = Random.Range(446f, 522f);
+            randomPos = new Vector3(x, 1.46f, z);
+        } while (Vector2.Distance(new Vector2(randomPos.x, randomPos.z), new Vector2(playerPos.x, playerPos.z)) < minDistance);
+
+        return randomPos;
     }
 
     private void SetHealth(int percent)
