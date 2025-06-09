@@ -37,4 +37,9 @@ public class MenuManager : MonoBehaviour
         _audioSource.Stop();
         SceneManager.LoadScene("Main");
     }
+
+    public void OpenGithub()
+    {
+        Application.OpenURL("https://github.com/matysta/dont-wake-up");
+    }
 }
