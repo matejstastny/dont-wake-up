@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
         // Game Over events
         TogglePause(true, false);
         gameOverScreen.SetActive(true);
+        waveText.alignment = TextAlignmentOptions.Center;
+        Vector3 pos = waveText.gameObject.transform.position;
+        pos.y = 500f;
+        waveText.gameObject.transform.position = pos;
+        waveText.text = "Score: " + (_waveNumber - 1);
         Global.Log("Game Over");
     }
     
