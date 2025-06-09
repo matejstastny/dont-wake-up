@@ -59,6 +59,11 @@ public class PlayerController : MonoBehaviour
     
     // Events -------------------------------------------------------------------------------------------
 
+    public void ToggleMovement(bool movementEnabled)
+    {
+        _rb.isKinematic = !movementEnabled;
+    }
+    
     private void HandlePauseToggle()
     {
 #if UNITY_EDITOR
@@ -67,12 +72,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
 #endif
         {
-            _gameManager.TogglePause();
-
-            if (_gameManager.IsPaused())
-                Pause();
-            else
-                Resume();
+            _gameManager.TogglePause(!_gameManager.IsPaused(), true);
         }
     }
 
@@ -127,15 +127,5 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = (transform.right * moveX + transform.forward * moveZ) * MoveSpeed;
         _rb.velocity = new Vector3(move.x, _rb.velocity.y, move.z);
-    }
-
-    private void Pause()
-    {
-        _rb.isKinematic = true;
-    }
-
-    private void Resume()
-    {
-        _rb.isKinematic = false;
     }
 }

@@ -4,22 +4,35 @@
  * GitHub link: https://github.com/matysta/dont-wake-up
  */
 
+using System;
 using UnityEngine;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("References")]
+    [Header("References")] 
     public TextMeshProUGUI waveText;
+    public GameObject[] healthBar;
     public GameObject enemyPrefab;
     public GameObject pauseScreen;
-    public GameObject hurtEffect;
+    public GameObject gameOverScreen;
+    public GameObject damageEffect;
     public GameObject crosshair;
 
-    [Header("State")]
+    [Header("State")] 
+    private PlayerController _player;
+    private int _health = 100;
     private int _waveNumber;
     private bool _isPaused;
     
+    // Start --------------------------------------------------------------------------------------------
+
+    private void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
+
     // Update -------------------------------------------------------------------------------------------
 
     private void Update()
@@ -38,13 +51,22 @@ public class GameManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        hurtEffect.GetComponent<PostProcessingController>().TakeDamage();
+        if (_isPaused) return;
+        damageEffect.GetComponent<PostProcessingController>().TakeDamage();
+        _health -= 25;
+        SetHealth(_health);
+        if (_health > 0) return;
+        // Game Over events
+        TogglePause(true, false);
+        gameOverScreen.SetActive(true);
+        Global.Log("Game Over");
     }
     
-    public void TogglePause()
+    public void TogglePause(bool paused, bool showPauseScreen)
     {
-        _isPaused = !_isPaused;
-        pauseScreen.SetActive(_isPaused);
+        _player.ToggleMovement(!paused);
+        _isPaused = paused;
+        pauseScreen.SetActive(_isPaused && showPauseScreen);
         crosshair.SetActive(!_isPaused);
     }
 
@@ -58,11 +80,28 @@ public class GameManager : MonoBehaviour
             Instantiate(enemyPrefab, GetRandomPosition(), enemyPrefab.transform.rotation);
         }
     }
+    
+    // Private ------------------------------------------------------------------------------------------
 
     private Vector3 GetRandomPosition()
     {
         float x = Random.Range(385f, 463f);
         float z = Random.Range(446f, 522f);
         return new Vector3(x, 1.46f, z);
+    }
+
+    private void SetHealth(int percent)
+    {
+        if (percent > 100 || percent < 0) return;
+
+        int totalPoints = healthBar.Length;
+        int healthNum = (int)Math.Round((double)totalPoints * percent / 100);
+
+        foreach (GameObject healthPoint in healthBar) healthPoint.SetActive(false);
+
+        for (int i = 0; i < healthNum; i++)
+        {
+            healthBar[i].SetActive(true); // Use array indexing directly
+        }
     }
 }

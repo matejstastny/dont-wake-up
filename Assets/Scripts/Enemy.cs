@@ -48,12 +48,12 @@ public class EnemyFollow : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, _player.position);
 
-        if (distance < 1.5f && _canHitPlayer)
+        if (distance < 1.8f && _canHitPlayer)
         {
             StartCoroutine(HitPlayer());
         }
 
-        if (distance > 1.3f && !_gameManager.IsPaused())
+        if (distance > 1.7f && !_gameManager.IsPaused())
         {
             _agent.SetDestination(_player.position);
         }
