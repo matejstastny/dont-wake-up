@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("References")] 
     public TextMeshProUGUI waveText;
+    public TextMeshProUGUI scoreText;
     public GameObject[] healthBar;
     public GameObject enemyPrefab;
     public GameObject pauseScreen;
@@ -66,11 +67,10 @@ public class GameManager : MonoBehaviour
         // Game Over events
         TogglePause(true, false);
         gameOverScreen.SetActive(true);
+        scoreText.text = "Score: " + (_waveNumber - 1);
         waveText.alignment = TextAlignmentOptions.Center;
-        Vector3 pos = waveText.gameObject.transform.position;
-        pos.y = 500f;
-        waveText.gameObject.transform.position = pos;
-        waveText.text = "Score: " + (_waveNumber - 1);
+        waveText.gameObject.SetActive(false);
+        
         Global.ToggleCursor(true);
         Global.Log("Game Over");
     }
