@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject crosshair;
 
     [Header("State")]
-    private int _waveNumber = 0;
-    private bool _isPaused = false;
+    private int _waveNumber;
+    private bool _isPaused;
     
     // Update -------------------------------------------------------------------------------------------
 
