@@ -15,4 +15,10 @@ public static class Global
         string timestamp = $"{now:HH:mm:ss.fff}";
         Debug.Log("[" + timestamp + "] " + message);
     }
+    
+    public static void ToggleCursor(bool isVisible)
+    {
+        Cursor.visible = isVisible;
+        Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
+    }
 }

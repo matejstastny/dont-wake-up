@@ -7,6 +7,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject damageEffect;
     public GameObject crosshair;
 
-    [Header("State")] 
+    [Header("State")]
     private PlayerController _player;
     private int _health = 100;
     private int _waveNumber;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        Global.ToggleCursor(false);
     }
 
     // Update -------------------------------------------------------------------------------------------
@@ -49,6 +51,11 @@ public class GameManager : MonoBehaviour
     
     // Events -------------------------------------------------------------------------------------------
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
     public void TakeDamage()
     {
         if (_isPaused) return;
@@ -64,6 +71,7 @@ public class GameManager : MonoBehaviour
         pos.y = 500f;
         waveText.gameObject.transform.position = pos;
         waveText.text = "Score: " + (_waveNumber - 1);
+        Global.ToggleCursor(true);
         Global.Log("Game Over");
     }
     
