@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + (_waveNumber - 1);
         waveText.alignment = TextAlignmentOptions.Center;
         waveText.gameObject.SetActive(false);
-        
         Global.ToggleCursor(true);
         Global.Log("Game Over");
     }

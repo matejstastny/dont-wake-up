@@ -49,8 +49,9 @@ Armed only with a handful of **sleeping pills** and a **flashlight**, you must f
 -   **Project Rubric:** [Game Spec & Rubric (PDF)](./public/game-spec-and-rubric.pdf)
 -   **Font used:** [Signika](https://fonts.google.com/specimen/Signika?categoryFilters=Sans+Serif:/Sans/Humanist)
 -   Some sound assets were imported from [Pixabay](https://pixabay.com/sound-effects/):
-    - [Hit Sound](https://pixabay.com/sound-effects/bubblepop-254773/)
-    - [Explosion Sound](https://pixabay.com/sound-effects/pixel-explosion-319166/)
+    - [Main menu soundtrack](https://pixabay.com/music/techno-trance-melodic-techno-03-extended-version-moogify-9867/) by [_Zen Man_](https://pixabay.com/users/zen_man-4257870/)
+    - [Hit Sound](https://pixabay.com/sound-effects/bubblepop-254773/) by [_linhmitto_](https://pixabay.com/users/linhmitto-46708238/)
+    - [Explosion Sound](https://pixabay.com/sound-effects/pixel-explosion-319166/) by [_Lumora Studios_](https://pixabay.com/users/lumora_studios-39090352/)
 
 ## 💬 Contact
 
