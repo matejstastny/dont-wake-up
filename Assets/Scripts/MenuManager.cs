@@ -9,16 +9,22 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    [Header("References")]
     private AudioSource _audioSource;
 
+    // Start --------------------------------------------------------------------------------------------
+    
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name != "Menu") return;
         _audioSource = GetComponent<AudioSource>();
         _audioSource.loop = true;
         _audioSource.Stop();
         _audioSource.Play(0);
     }
 
+    // Room Switching -----------------------------------------------------------------------------------
+    
     public void SwitchToMenu()
     {
         SceneManager.LoadScene("Menu");
