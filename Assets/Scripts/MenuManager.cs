@@ -28,13 +28,10 @@ public class MenuManager : MonoBehaviour
     public void SwitchToMenu()
     {
         SceneManager.LoadScene("Menu");
-        _audioSource.Stop();
-        _audioSource.Play(0);
     }
     
     public void SwitchToGame()
     {
-        _audioSource.Stop();
         SceneManager.LoadScene("Main");
     }
 
