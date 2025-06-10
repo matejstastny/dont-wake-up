@@ -36,18 +36,29 @@ public class PostProcessingController : MonoBehaviour
     
     // Controllers --------------------------------------------------------------------------------------
 
-    public void TakeDamage()
+    public void HurtEffect()
     {
-        StartCoroutine(nameof(TakeDamageRoutine));
+        PlayEffect(Color.red);
+    }
+    
+    public void HealEffect()
+    {
+        PlayEffect(Color.green);
     }
     
     // Private --------------------------------------------------------------------------------------
     
-    private IEnumerator TakeDamageRoutine()
+    private void PlayEffect(Color c)
     {
-        _intensity = 0.4f;
+        StartCoroutine(EffectRoutine(c));
+    }
+    
+    private IEnumerator EffectRoutine(Color c)
+    {
+        _intensity = 0.5f;
         _vignette.enabled.Override(true);
         _vignette.intensity.Override(_intensity);
+        _vignette.color.Override(c);
         yield return new WaitForSeconds(0.4f);
 
         while (_intensity > 0)

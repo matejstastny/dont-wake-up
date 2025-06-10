@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject powerUpPrefab;
     public GameObject pauseScreen;
     public GameObject gameOverScreen;
-    public GameObject damageEffect;
+    public GameObject effects;
     public GameObject crosshair;
 
     [Header("State")]
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
     public void TakeDamage()
     {
         if (_isPaused) return;
-        damageEffect.GetComponent<PostProcessingController>().TakeDamage();
+        effects.GetComponent<PostProcessingController>().HurtEffect();
         _health -= 25;
         SetHealth(_health);
         if (_health > 0) return;
@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
     public void Heal()
     {
         _health += 25;
+        effects.GetComponent<PostProcessingController>().HealEffect();
         if (_health > 100) _health = 100;
         SetHealth(_health);
     }

@@ -1581,7 +1581,7 @@ GameObject:
   - component: {fileID: 773837699}
   - component: {fileID: 773837700}
   m_Layer: 3
-  m_Name: DamageEffect
+  m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2351,7 +2351,7 @@ MonoBehaviour:
   powerUpPrefab: {fileID: 6836537256976443026, guid: 66384c670226c47a983ebe3768ab5f94, type: 3}
   pauseScreen: {fileID: 955815066}
   gameOverScreen: {fileID: 1181545284}
-  damageEffect: {fileID: 773837697}
+  effects: {fileID: 773837697}
   crosshair: {fileID: 1248477971}
 --- !u!4 &1121661109
 Transform:
