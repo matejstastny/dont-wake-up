@@ -46,6 +46,7 @@ Armed only with a handful of **sleeping pills** and a **flashlight**, you must f
 
 ## 📚 Resources
 
+This work is based on ["Shiny_red_gumm"](https://sketchfab.com/3d-models/shiny-red-gumm-ca310c10338549df92c6cf23ba86c104) by [aguetaa](https://sketchfab.com/ArielGv) licensed under [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/)
 -   **Game specifications & rubric:** [Game Spec & Rubric (PDF)](./public/game-spec-and-rubric.pdf)
 -   Fonts were imported from Google Fonts, under the [**OFL**](https://openfontlicense.org/) license:
     -   **Main Menu Font** [Climate Crisis](https://fonts.google.com/specimen/Climate+Crisis?preview.text=DON'T%20WAKE%20UP&preview.size=148)
