@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI scoreText;
     public GameObject[] healthBar;
+    public GameObject[] tutorialTexts;
+    public GameObject tutorialUI;
     public GameObject enemyPrefab;
     public GameObject pauseScreen;
     public GameObject gameOverScreen;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     [Header("State")]
     private PlayerController _player;
+    private int _tutorialIndex = 0;
     private int _health = 100;
     private int _waveNumber;
     private bool _isPaused;
@@ -33,7 +36,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        TogglePause(true, false);
         Global.ToggleCursor(false);
+        NextTutorial(true);
     }
 
     // Update -------------------------------------------------------------------------------------------
@@ -52,6 +57,36 @@ public class GameManager : MonoBehaviour
     
     // Events -------------------------------------------------------------------------------------------
 
+    public void NextTutorial(bool reset)
+    {
+        if (reset)
+        {
+            _tutorialIndex = 0;
+            tutorialUI.SetActive(true);
+            Global.ToggleCursor(true);
+            ToggleHUD(false);
+        }
+
+        foreach (GameObject tutorial in tutorialTexts) tutorial.SetActive(false);
+        if (_tutorialIndex >= tutorialTexts.Length)
+        {
+            EndTutorial();
+        }
+        else
+        {
+            tutorialTexts[_tutorialIndex].SetActive(true);
+        }
+        _tutorialIndex++;
+    }
+
+    public void EndTutorial()
+    {
+        tutorialUI.SetActive(false);
+        Global.ToggleCursor(false);
+        TogglePause(false, false);
+        ToggleHUD(true);
+    }
+    
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -65,12 +100,11 @@ public class GameManager : MonoBehaviour
         SetHealth(_health);
         if (_health > 0) return;
         // Game Over events
+        Global.ToggleCursor(true);
         TogglePause(true, false);
+        ToggleHUD(false);
         gameOverScreen.SetActive(true);
         scoreText.text = "Score: " + (_waveNumber - 1);
-        waveText.alignment = TextAlignmentOptions.Center;
-        waveText.gameObject.SetActive(false);
-        Global.ToggleCursor(true);
         Global.Log("Game Over");
     }
     
@@ -109,6 +143,13 @@ public class GameManager : MonoBehaviour
         } while (Vector2.Distance(new Vector2(randomPos.x, randomPos.z), new Vector2(playerPos.x, playerPos.z)) < minDistance);
 
         return randomPos;
+    }
+
+    private void ToggleHUD(bool showHUD)
+    {
+        crosshair.SetActive(showHUD);
+        foreach (GameObject health in healthBar) health.SetActive(showHUD);
+        waveText.gameObject.SetActive(showHUD);
     }
 
     private void SetHealth(int percent)
