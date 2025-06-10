@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] tutorialTexts;
     public GameObject tutorialUI;
     public GameObject enemyPrefab;
+    public GameObject powerUpPrefab;
     public GameObject pauseScreen;
     public GameObject gameOverScreen;
     public GameObject damageEffect;
@@ -116,8 +117,28 @@ public class GameManager : MonoBehaviour
         crosshair.SetActive(!_isPaused);
     }
 
+    public void Heal()
+    {
+        _health += 25;
+        if (_health > 100) _health = 100;
+        SetHealth(_health);
+    }
+
     private void SpawnWave()
     {
+        if (GameObject.FindGameObjectsWithTag("PowerUp").Length == 0)
+        {
+            Vector3 spawnPos = GetRandomPosition();
+            spawnPos.y = -1.4f;
+            Quaternion spawnRot = Quaternion.Euler(
+                powerUpPrefab.transform.rotation.eulerAngles.x,
+                Random.Range(0f, 360f),
+                powerUpPrefab.transform.rotation.eulerAngles.z
+            );
+
+            Instantiate(powerUpPrefab, spawnPos, spawnRot);
+        }
+        
         _waveNumber++;
         waveText.text = $"Wave: {_waveNumber}";
 

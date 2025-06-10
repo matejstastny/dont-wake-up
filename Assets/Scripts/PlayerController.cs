@@ -4,9 +4,11 @@
  * GitHub link: https://github.com/matysta/dont-wake-up
  */
 
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
@@ -57,6 +59,17 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
     }
     
+    // Collision ----------------------------------------------------------------------------------------
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            _gameManager.Heal();
+        }
+        Destroy(other.gameObject);
+    }
+
     // Events -------------------------------------------------------------------------------------------
 
     public void ToggleMovement(bool movementEnabled)
