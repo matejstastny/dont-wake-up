@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnWave()
     {
-        if (GameObject.FindGameObjectsWithTag("PowerUp").Length == 0)
+        if (GameObject.FindGameObjectsWithTag("PowerUp").Length == 0 && Random.Range(0, 100) < 80)
         {
             Vector3 spawnPos = GetRandomPosition();
             spawnPos.y = -1.4f;
