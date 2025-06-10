@@ -7,7 +7,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class GithubButton : MonoBehaviour
+public class GitHubButton : MonoBehaviour
 {
     private MenuManager _menuManager;
 
