@@ -12,7 +12,7 @@ You're inside your own brain... dreaming.
 But it's not peaceful — **energy drinks** are invading your mind.  
 If they touch you, you lose a life. Lose all 3? You **wake up**.
 
-Armed only with a handful of **sleeping pills** and a **flashlight**, you must fight off waves of caffeinated chaos in the dark. The deeper you sleep, the more they come.
+Armed only with a handful of **melatonin gummies** and a **flashlight**, you must fight off waves of caffeinated chaos in the dark. The deeper you sleep, the more they come.
 
 ## ⚙️ Features
 
@@ -21,7 +21,7 @@ Armed only with a handful of **sleeping pills** and a **flashlight**, you must f
 - 🥤 **Wave-based enemies**
     - Wave number = number of enemies
     - New wave spawns when all current energy drinks are defeated
-- 💊 **Sleeping pills** as weapons
+- 🐻 **Melatonin gummies** as weapons
 - ❤️ **3 lives** before you wake up
 - 👻 **Creepy vibes** — you never know when a drink might sneak up behind you...
 
@@ -30,7 +30,7 @@ Armed only with a handful of **sleeping pills** and a **flashlight**, you must f
 <ul>
   <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> — Move</li>
   <li><kbd>Mouse</kbd> — Look around</li>
-  <li><kbd>Left Click</kbd> — Throw sleeping pill</li>
+  <li><kbd>Left Click</kbd> — Throw gummy</li>
   <li><kbd>Right Click</kbd> or <kbd>F</kbd> — Toggle flashlight</li>
   <li><kbd>Esc</kbd> — Pause / Exit</li>
 </ul>
@@ -38,7 +38,7 @@ Armed only with a handful of **sleeping pills** and a **flashlight**, you must f
 ## 💡 Possible Future Features
 
 - New enemies like coffee mugs, alarm clocks, and glowing phone screens
-- Power-ups (e.g., melatonin, lullabies, warm milk)
+- Power-ups (e.g., lullabies, warm milk)
 - Randomized dreamscapes
 - Wave tracking or leaderboard
 
