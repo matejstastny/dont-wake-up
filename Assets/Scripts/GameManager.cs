@@ -4,7 +4,6 @@
  * GitHub link: https://github.com/matysta/dont-wake-up
  */
 
-using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -19,7 +18,7 @@ public class GameManager : MonoBehaviour
     private const int HealAmount = 25;
     private const float PowerUpSpawnChance = 0.8f; // 0 to 1
     private const float PowerUpYPos = -1.4f;
-    private const float MinEnemySpawnDistance = 1.5f;
+    private const float MinEnemySpawnDistance = 3f;
 
     private static readonly Vector2 EnemySpawnXRange = new Vector2(385f, 463f);
     private static readonly Vector2 EnemySpawnZRange = new Vector2(446f, 522f);
@@ -41,8 +40,8 @@ public class GameManager : MonoBehaviour
 
     [Header("State")]
     private PlayerController _player;
-    private int _tutorialIndex = 0;
     private int _health = MaxHealth;
+    private int _tutorialIndex;
     private int _waveNumber;
     private bool _isPaused;
 

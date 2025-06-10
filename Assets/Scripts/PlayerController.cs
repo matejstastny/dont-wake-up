@@ -11,17 +11,23 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class PlayerController : MonoBehaviour
 {
+    // Constants ----------------------------------------------------------------------------------------
+
+    private const float MoveSpeed = 10f;
+    private const float JumpForce = 6f;
+    private const float GroundCheckDistance = 1.1f;
+    private const float MouseSensitivity = 600f;
+    private const float BulletSpawnDistance = 1.5f;
+    private const float CameraVerticalClamp = 90f;
+    
+    // References ---------------------------------------------------------------------------------------
+    
     [Header("References")]
     public Transform cameraTransform;
     public GameObject bulletPrefab;
     public GameObject flashlight;
     public LayerMask groundMask;
 
-    [Header("Constants")]
-    private const float MoveSpeed = 10f;
-    private const float JumpForce = 6f;
-    private const float GroundCheckDistance = 1.1f;
-    private const float MouseSensitivity = 600f;
 
     [Header("Private")]
     private GameManager _gameManager;
@@ -58,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (_gameManager.IsPaused()) return;
         HandleMovement();
     }
-    
+
     // Collision ----------------------------------------------------------------------------------------
 
     private void OnTriggerEnter(Collider other)
@@ -76,7 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb.isKinematic = !movementEnabled;
     }
-    
+
     private void HandlePauseToggle()
     {
 #if UNITY_EDITOR
@@ -97,7 +103,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         _xRotation -= mouseY;
-        _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
+        _xRotation = Mathf.Clamp(_xRotation, -CameraVerticalClamp, CameraVerticalClamp);
         cameraTransform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
     }
 
@@ -118,7 +124,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 spawnPos = cameraTransform.position + cameraTransform.forward * 1.5f;
+            Vector3 spawnPos = cameraTransform.position + cameraTransform.forward * BulletSpawnDistance;
             Quaternion spawnRot = cameraTransform.rotation * Quaternion.Euler(90f, 0f, 0f);
             Instantiate(bulletPrefab, spawnPos, spawnRot);
         }
