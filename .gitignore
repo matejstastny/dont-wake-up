@@ -78,3 +78,10 @@ Icon
 # VS / MonoDevelop / Consulo
 .vs/
 .consulo/
+
+############
+# DMG CREATION
+############
+
+make-dmg/*.app
+make-dmg/*.dmg
