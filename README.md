@@ -1,3 +1,6 @@
+> [!NOTE]
+> This project represents its final, complete version and will likely not receive further updates as I’ve moved on to other projects.
+
 <img src="https://github.com/matysta/dont-wake-up/blob/main/Assets/Textures/icon.png?raw=true" align="right" width="20%"  alt="Project Icon"/>
 
 
