@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private const float MoveSpeed = 10f;
     private const float JumpForce = 6f;
     private const float GroundCheckDistance = 1.1f;
-    private const float MouseSensitivity = 600f;
+    private const float MouseSensitivity = 1000f;
     private const float BulletSpawnDistance = 1.5f;
     private const float CameraVerticalClamp = 90f;
     
